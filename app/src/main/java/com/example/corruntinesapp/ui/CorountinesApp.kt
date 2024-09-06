@@ -45,10 +45,10 @@ fun CoroutinesApp(viewModel: MainViewModel  ,modifier: Modifier = Modifier ){
 
             }
         Spacer(modifier = modifier.height(30.dp))
-
+        Text(text = "${viewModel.countTime}[s]")
             Text(text = viewModel.resultState)
         Button(onClick = {
-            viewModel.bloqeuoApp()
+            viewModel.fetchData()
         }) {
             Text(text = stringResource(id = R.string.realizar_consulta))
 
