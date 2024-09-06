@@ -14,6 +14,9 @@ class MainViewModel: ViewModel() { // vista modelo herredade de vista modelo
     var resultState by mutableStateOf("")
         private set //atributo solo d lectura
     var countTime by mutableStateOf(0)
+    var countTime2 by mutableStateOf(0)
+        var time: Int by mutableStateOf(0)
+
         private set
     private var oneCount by mutableStateOf(false)
 
@@ -25,6 +28,7 @@ class MainViewModel: ViewModel() { // vista modelo herredade de vista modelo
                 countTime  = i
             }
           oneCount = true
+          time =1
         }
         viewModelScope.launch {
             delay(5000) //tiempo de espera
@@ -34,6 +38,27 @@ class MainViewModel: ViewModel() { // vista modelo herredade de vista modelo
             job.cancel() //se usa para cancelar tareas
         }
 
+    }
+    fun fetchData2(){
+        if (time ==1) {
+            val job = viewModelScope.launch {
+                for (i in 1..5) { //contador de tiempo
+                    delay(
+                        1000
+                    )
+                    countTime2 = i
+                }
+                oneCount = true
+            }
+            viewModelScope.launch {
+                delay(5000) //tiempo de espera
+                resultState = "Respuesta desde el servidor Web"
+            }
+            if (oneCount) {
+                job.cancel() //se usa para cancelar tareas
+            }
+
+        }
     }
 
 
