@@ -21,9 +21,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.corruntinesapp.R
+import com.example.corruntinesapp.viewmodel.MainViewModel
 
 @Composable
-fun CoroutinesApp(modifier: Modifier = Modifier ){
+fun CoroutinesApp(viewModel: MainViewModel  ,modifier: Modifier = Modifier ){
 
     var changeColor by remember{
         mutableStateOf(false)
@@ -45,8 +46,10 @@ fun CoroutinesApp(modifier: Modifier = Modifier ){
             }
         Spacer(modifier = modifier.height(30.dp))
 
-            Text(text = stringResource(R.string.datos_web))
-        Button(onClick = { /*TODO*/ }) {
+            Text(text = viewModel.resultState)
+        Button(onClick = {
+            viewModel.bloqeuoApp()
+        }) {
             Text(text = stringResource(id = R.string.realizar_consulta))
 
 }
